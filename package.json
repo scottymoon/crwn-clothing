@@ -10,6 +10,7 @@
     "@types/node": "^12.19.11",
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
+    "formik": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -28,7 +29,8 @@
     "workbox-range-requests": "^5.1.4",
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
-    "workbox-streams": "^5.1.4"
+    "workbox-streams": "^5.1.4",
+    "yup": "^0.32.8"
   },
   "scripts": {
     "start": "react-scripts start",

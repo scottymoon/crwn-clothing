@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router-dom"
+import AuthPage from "../../pages/AuthPage"
 import HomePage from "../../pages/HomePage"
 import ShopPage from "../../pages/ShopPage"
 import Header from "../Header"
@@ -9,8 +10,8 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/shop" component={ShopPage} />
-        <Route path="/shop/:item" component={ShopPage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route path="/login" component={AuthPage} />
       </Switch>
     </div>
   )
