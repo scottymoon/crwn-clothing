@@ -1,6 +1,8 @@
 import "./styles.scss"
 import { useFormik } from "formik"
 import * as yup from "yup"
+import { TextField } from "@material-ui/core"
+import Button from "../Button"
 
 const validationSchema = yup.object({
   email: yup
@@ -30,25 +32,32 @@ export default function LoginForm() {
       <h2>I already have an account</h2>
       <span>Login with your email and password</span>
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
+        <TextField
+          className="form-input"
+          fullWidth
           id="email"
           name="email"
-          type="email"
-          onChange={formik.handleChange}
+          label="Email"
           value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
         />
-        {formik.errors.email && <span>{formik.errors.email}</span>}
-        <label htmlFor="password">Password</label>
-        <input
+        <TextField
+          className="form-input"
+          fullWidth
           id="password"
           name="password"
+          label="Password"
           type="password"
-          onChange={formik.handleChange}
           value={formik.values.password}
+          onChange={formik.handleChange}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
         />
-        {formik.errors.password && <span>{formik.errors.password}</span>}
-        <button type="submit">Login</button>
+        <Button className="form-button" variant="contained" type="submit">
+          Login
+        </Button>
       </form>
     </div>
   )
