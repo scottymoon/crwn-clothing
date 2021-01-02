@@ -7,7 +7,9 @@ interface Props extends ButtonProps {
 }
 
 export default function Button({ children, className, ...rest }: Props) {
-  const classNames = className ? `mui-button ${className}` : "mui-button"
+  const classNames = className
+    ? `default-button ${className}`
+    : "default-button"
   return (
     <MuiButton className={classNames} {...rest}>
       {children}

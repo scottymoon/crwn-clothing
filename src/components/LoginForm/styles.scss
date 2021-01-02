@@ -1,11 +1,28 @@
 .login {
+  display: flex;
+  flex-direction: column;
+
   .form-input {
     display: block;
     margin: 25px 0;
-    width: 30vw;
   }
+
   .form-button {
-    display: block;
-    margin: 25px 0;
+    margin: 25px 25px 0 0;
+    white-space: nowrap;
+    min-width: 185px !important;
+
+    &.google {
+      background-color: #4c8bf5 !important;
+      &:hover {
+        background-color: white !important;
+        color: #4c8bf5 !important;
+        border: 1px solid #4c8bf5 !important;
+      }
+    }
+  }
+
+  .title {
+    margin: 10px 0;
   }
 }

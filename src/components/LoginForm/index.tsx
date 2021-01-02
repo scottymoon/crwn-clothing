@@ -58,6 +58,13 @@ export default function LoginForm() {
         <Button className="form-button" variant="contained" type="submit">
           Login
         </Button>
+        <Button
+          className="form-button google"
+          variant="contained"
+          type="submit"
+        >
+          Login with Google
+        </Button>
       </form>
     </div>
   )

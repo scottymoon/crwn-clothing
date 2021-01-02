@@ -1,22 +1,23 @@
-.mui-button {
-  min-width: 165px;
-  width: auto;
-  height: 50px;
-  letter-spacing: 0.5px;
-  line-height: 50px;
-  padding: 0 35px 0 35px;
-  font-size: 15px;
-  background-color: black;
-  color: white;
-  text-transform: uppercase;
-  font-family: "Open Sans Condensed";
-  font-weight: bolder;
-  border: none;
-  cursor: pointer;
+.default-button {
+  min-width: 165px !important;
+  width: auto !important;
+  height: 50px !important;
+  letter-spacing: 0.5px !important;
+  line-height: 50px !important;
+  padding: 0 35px 0 35px !important;
+  font-size: 15px !important;
+  background-color: black !important;
+  color: white !important;
+  text-transform: uppercase !important;
+  font-family: "Open Sans Condensed" !important;
+  font-weight: bolder !important;
+  border: none !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
 
   &:hover {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid black !important;
   }
 }
