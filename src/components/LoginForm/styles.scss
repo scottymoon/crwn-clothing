@@ -1,6 +1,14 @@
-.login {
+$google-blue: #4c8bf5;
+
+.sign-in {
+  width: 380px;
   display: flex;
   flex-direction: column;
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
 
   .form-input {
     display: block;
@@ -8,16 +16,15 @@
   }
 
   .form-button {
-    margin: 25px 25px 0 0;
     white-space: nowrap;
-    min-width: 185px !important;
 
     &.google {
-      background-color: #4c8bf5 !important;
+      background-color: $google-blue !important;
+
       &:hover {
         background-color: white !important;
-        color: #4c8bf5 !important;
-        border: 1px solid #4c8bf5 !important;
+        color: $google-blue !important;
+        border: 1px solid $google-blue !important;
       }
     }
   }

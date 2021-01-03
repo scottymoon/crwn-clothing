@@ -3,6 +3,7 @@ import { useFormik } from "formik"
 import * as yup from "yup"
 import { TextField } from "@material-ui/core"
 import Button from "../Button"
+import { useFirebase } from "../../hooks/useFirebase"
 
 const validationSchema = yup.object({
   email: yup
@@ -16,6 +17,7 @@ const validationSchema = yup.object({
 })
 
 export default function LoginForm() {
+  const { signInWithGoogle } = useFirebase()
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -28,7 +30,7 @@ export default function LoginForm() {
   })
 
   return (
-    <div className="login">
+    <div className="sign-in">
       <h2>I already have an account</h2>
       <span>Login with your email and password</span>
       <form onSubmit={formik.handleSubmit}>
@@ -55,16 +57,18 @@ export default function LoginForm() {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
-        <Button className="form-button" variant="contained" type="submit">
-          Login
-        </Button>
-        <Button
-          className="form-button google"
-          variant="contained"
-          type="submit"
-        >
-          Login with Google
-        </Button>
+        <div className="buttons">
+          <Button className="form-button" variant="contained" type="submit">
+            Sign in
+          </Button>
+          <Button
+            className="form-button google"
+            variant="contained"
+            onClick={signInWithGoogle}
+          >
+            Sign in with Google
+          </Button>
+        </div>
       </form>
     </div>
   )
