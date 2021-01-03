@@ -2,15 +2,9 @@ import { Link } from "react-router-dom"
 import "./styles.scss"
 import { ReactComponent as Logo } from "../../assets/svg/crown.svg"
 import { useAppState } from "../../hooks/useAppState"
-import { useFirebase } from "../../hooks/useFirebase"
 
 export default function Header() {
-  const { auth } = useFirebase()
-  const { signedIn } = useAppState()
-
-  function signOut() {
-    auth.signOut()
-  }
+  const { signedIn, signOut } = useAppState()
 
   return (
     <div className="header">

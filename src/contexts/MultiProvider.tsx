@@ -1,4 +1,3 @@
-import { AuthProvider } from "./AuthContext"
 import { UserProvider } from "./UserContext"
 
 interface Props {
@@ -6,9 +5,5 @@ interface Props {
 }
 
 export default function MultiProvider({ children }: Props) {
-  return (
-    <AuthProvider>
-      <UserProvider>{children}</UserProvider>
-    </AuthProvider>
-  )
+  return <UserProvider>{children}</UserProvider>
 }

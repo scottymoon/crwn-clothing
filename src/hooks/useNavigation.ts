@@ -12,10 +12,8 @@ export function useNavigation() {
     history.push(`${match.url}${path}`)
   }
 
-  const navigation = {
+  return {
     linkTo,
-    matchTo
+    matchTo,
   }
-
-  return navigation
 }

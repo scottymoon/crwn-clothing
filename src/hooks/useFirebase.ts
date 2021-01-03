@@ -16,15 +16,19 @@ export type CollectionReference = firebase.firestore.CollectionReference
 export type DocumentReference = firebase.firestore.DocumentReference
 export type FirebaseUser = firebase.User
 
-firebase.initializeApp(config)
+try {
+  firebase.initializeApp(config)
+} catch (err) {
+  console.log("Error Initializing Firebase App: ", err.message)
+}
 
 export function useFirebase() {
   const auth = firebase.auth()
   const firestore = firebase.firestore()
 
-  const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
-  googleAuthProvider.setCustomParameters({ prompt: "select_account" })
-  const signInWithGoogle = () => auth.signInWithPopup(googleAuthProvider)
-
-  return { auth, firebase, firestore, signInWithGoogle }
+  return {
+    auth,
+    firebase,
+    firestore,
+  }
 }
