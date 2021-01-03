@@ -1,25 +1,29 @@
 import { createContext, useEffect, useState } from "react"
-import { useFirebase, User } from "../hooks/useFirebase"
+import { useFirebase, FirebaseUser } from "../hooks/useFirebase"
 import { ProviderProps } from "../types/context"
 
 interface AuthContextValues {
-  user: User | null
+  firebaseUser: FirebaseUser | null
 }
 
 export const AuthContext = createContext<AuthContextValues>({
-  user: null,
+  firebaseUser: null,
 })
 
 export const AuthProvider = ({ children }: ProviderProps) => {
   const { auth } = useFirebase()
-  const [user, setUser] = useState<User | null>(null)
+  const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null)
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => setUser(user))
+    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      setFirebaseUser(user)
+    })
     return unsubscribeFromAuth
   }, [auth])
 
   return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ firebaseUser }}>
+      {children}
+    </AuthContext.Provider>
   )
 }

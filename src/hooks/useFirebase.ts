@@ -12,7 +12,9 @@ const config = {
   measurementId: "G-NLMWTZQ6J6",
 }
 
-export type User = firebase.User
+export type CollectionReference = firebase.firestore.CollectionReference
+export type DocumentReference = firebase.firestore.DocumentReference
+export type FirebaseUser = firebase.User
 
 firebase.initializeApp(config)
 
@@ -20,9 +22,9 @@ export function useFirebase() {
   const auth = firebase.auth()
   const firestore = firebase.firestore()
 
-  const provider = new firebase.auth.GoogleAuthProvider()
-  provider.setCustomParameters({ prompt: "select_account" })
-  const signInWithGoogle = () => auth.signInWithPopup(provider)
+  const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+  googleAuthProvider.setCustomParameters({ prompt: "select_account" })
+  const signInWithGoogle = () => auth.signInWithPopup(googleAuthProvider)
 
   return { auth, firebase, firestore, signInWithGoogle }
 }

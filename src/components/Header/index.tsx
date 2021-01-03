@@ -6,7 +6,7 @@ import { useFirebase } from "../../hooks/useFirebase"
 
 export default function Header() {
   const { auth } = useFirebase()
-  const { user } = useAppState()
+  const { signedIn } = useAppState()
 
   function signOut() {
     auth.signOut()
@@ -24,7 +24,7 @@ export default function Header() {
         <Link className="option" to="/shop">
           Contact
         </Link>
-        {user ? (
+        {signedIn ? (
           <div className="option" onClick={signOut}>
             Sign out
           </div>
