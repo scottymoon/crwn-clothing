@@ -4,7 +4,7 @@ import "./styles.scss"
 
 export default function AuthPage() {
   return (
-    <div>
+    <div className="auth-forms">
       <SignInForm />
       <SignUpForm />
     </div>

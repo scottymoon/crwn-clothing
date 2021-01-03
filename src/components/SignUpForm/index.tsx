@@ -21,7 +21,7 @@ const validationSchema = yup.object({
 })
 
 export default function SignUpForm() {
-  const { signInWithGoogle, signUp } = useAppState()
+  const { signUp } = useAppState()
   const formik = useFormik({
     initialValues: {
       displayName: "",
@@ -29,9 +29,9 @@ export default function SignUpForm() {
       password: "",
       confirmPassword: "",
     },
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       const { email, password, displayName } = values
-      signUp(email, password, displayName)
+      signUp(email, password, displayName, resetForm)
     },
     validationSchema,
   })
@@ -94,18 +94,9 @@ export default function SignUpForm() {
             formik.touched.confirmPassword && formik.errors.confirmPassword
           }
         />
-        <div className="buttons">
-          <Button className="form-button" variant="contained" type="submit">
-            Sign up
-          </Button>
-          <Button
-            className="form-button google"
-            variant="contained"
-            onClick={signInWithGoogle}
-          >
-            Sign up with Google
-          </Button>
-        </div>
+        <Button className="form-button" variant="contained" type="submit">
+          Sign up
+        </Button>
       </form>
     </div>
   )

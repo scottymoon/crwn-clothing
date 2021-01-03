@@ -1,20 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useEffect, useState } from "react"
-import {
-  DocumentReference,
-  FirebaseUser,
-  useFirebase,
-} from "../hooks/useFirebase"
+import { FirebaseUser, useFirebase } from "../hooks/useFirebase"
 import { ProviderProps } from "../types/context"
 import { User } from "../types/user"
 
 export interface UserContextValues {
   firebaseUser: FirebaseUser | null
   signedIn: boolean
-  signIn: (email: string, password: string) => void
+  signIn: (email: string, password: string, callback?: Function) => void
   signInWithGoogle: () => void
   signOut: () => void
-  signUp: (email: string, password: string, displayName: string) => void
+  signUp: (
+    email: string,
+    password: string,
+    displayName: string,
+    callback?: Function,
+  ) => void
   user: User | null
 }
 
@@ -38,7 +39,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
 
   // if firebaseUser and userRef exist, subscribe to user data changes
   useEffect(() => {
-    const unsubscribeFromUser = subscribeToUser(userRef)
+    const unsubscribeFromUser = subscribeToUser()
     return unsubscribeFromUser
   }, [firebaseUser])
 
@@ -65,15 +66,13 @@ export const UserProvider = ({ children }: ProviderProps) => {
     })
   }
 
-  function subscribeToUser(ref: DocumentReference | null) {
-    if (!ref) return
-
+  function subscribeToUser() {
     if (!firebaseUser) {
       setUser(null)
       return
     }
 
-    return ref.onSnapshot((snap) => {
+    return userRef.onSnapshot((snap) => {
       const data = snap.data()
       setUser({
         id: snap.id,
@@ -102,11 +101,12 @@ export const UserProvider = ({ children }: ProviderProps) => {
       })
   }
 
-  function signIn(email: string, password: string) {
+  function signIn(email: string, password: string, callback?: Function) {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         setFirebaseUser(result.user)
+        callback && callback()
       })
       .catch((err) => {
         console.log("Sign in error: ", err.message)
@@ -117,12 +117,18 @@ export const UserProvider = ({ children }: ProviderProps) => {
     auth.signOut().then(() => setFirebaseUser(null))
   }
 
-  function signUp(email: string, password: string, displayName: string) {
+  function signUp(
+    email: string,
+    password: string,
+    displayName: string,
+    callback?: Function,
+  ) {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         createFirebaseUser(userCredential.user, { displayName })
         setFirebaseUser(userCredential.user)
+        callback && callback()
       })
       .catch((err) => {
         console.log("Error creating user: ", err.message)

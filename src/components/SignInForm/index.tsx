@@ -23,9 +23,9 @@ export default function SignInForm() {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       const { email, password } = values
-      signIn(email, password)
+      signIn(email, password, resetForm)
     },
     validationSchema,
   })
