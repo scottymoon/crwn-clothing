@@ -29,7 +29,7 @@ export default function Header() {
             Sign out
           </div>
         ) : (
-          <Link className="option" to="/login">
+          <Link className="option" to="/auth">
             Sign in
           </Link>
         )}

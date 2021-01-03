@@ -16,7 +16,7 @@ const validationSchema = yup.object({
     .required("Password is required"),
 })
 
-export default function LoginForm() {
+export default function SignInForm() {
   const { signInWithGoogle } = useFirebase()
   const formik = useFormik({
     initialValues: {
