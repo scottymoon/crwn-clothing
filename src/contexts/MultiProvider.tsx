@@ -1,3 +1,4 @@
+import { CartProvider } from "./CartContext"
 import { UserProvider } from "./UserContext"
 
 interface Props {
@@ -5,5 +6,9 @@ interface Props {
 }
 
 export default function MultiProvider({ children }: Props) {
-  return <UserProvider>{children}</UserProvider>
+  return (
+    <UserProvider>
+      <CartProvider>{children}</CartProvider>
+    </UserProvider>
+  )
 }

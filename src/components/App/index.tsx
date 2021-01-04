@@ -6,7 +6,9 @@ import ShopPage from "../../pages/ShopPage"
 import Header from "../Header"
 
 export default function App() {
-  const { signedIn } = useAppState()
+  const {
+    user: { signedIn },
+  } = useAppState()
 
   return (
     <div>

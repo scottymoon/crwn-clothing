@@ -4,11 +4,12 @@ import { ReactComponent as Logo } from "../../assets/svg/crown.svg"
 import { useAppState } from "../../hooks/useAppState"
 import CartIcon from "../CartIcon"
 import CartDropDown from "../CartDropDown"
-import { useState } from "react"
 
 export default function Header() {
-  const { signedIn, signOut } = useAppState()
-  const [showDropDown, setShowDropDown] = useState(false)
+  const {
+    user: { signedIn, signOut },
+    cart: { previewCart, toggleCart },
+  } = useAppState()
 
   return (
     <div className="header">
@@ -31,9 +32,9 @@ export default function Header() {
             Sign in
           </Link>
         )}
-        <CartIcon onClick={() => setShowDropDown(!showDropDown)} />
+        <CartIcon onClick={toggleCart} />
       </div>
-      {showDropDown && <CartDropDown />}
+      {previewCart && <CartDropDown />}
     </div>
   )
 }

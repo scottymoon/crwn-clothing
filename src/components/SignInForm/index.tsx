@@ -17,7 +17,9 @@ const validationSchema = yup.object({
 })
 
 export default function SignInForm() {
-  const { signIn, signInWithGoogle } = useAppState()
+  const {
+    user: { signIn, signInWithGoogle },
+  } = useAppState()
   const formik = useFormik({
     initialValues: {
       email: "",

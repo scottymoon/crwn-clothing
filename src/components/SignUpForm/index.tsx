@@ -21,7 +21,9 @@ const validationSchema = yup.object({
 })
 
 export default function SignUpForm() {
-  const { signUp } = useAppState()
+  const {
+    user: { signUp },
+  } = useAppState()
   const formik = useFormik({
     initialValues: {
       displayName: "",
