@@ -14,8 +14,12 @@ export default function CollectionPreview({ title, products }: Props) {
       <div className="preview">
         {products
           .filter((_, idx) => idx < 4)
-          .map(({ id, ...rest }) => (
-            <CollectionItem key={`product-${id}`} id={id} {...rest} />
+          .map((product) => (
+            <CollectionItem
+              key={`product-${product.id}`}
+              id={product.id}
+              item={product}
+            />
           ))}
       </div>
     </div>

@@ -9,7 +9,7 @@ export default function CartDropDown() {
   return (
     <div className="cart-dropdown">
       <div className="cart-items" />
-      <Button onClick={goToCart}>Go to Cart</Button>
+      <Button onClick={goToCart}>Go to Checkout</Button>
     </div>
   )
 }

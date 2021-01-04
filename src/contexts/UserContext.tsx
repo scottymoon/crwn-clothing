@@ -1,6 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useEffect, useState } from "react"
-import { FirebaseUser, useFirebase } from "../hooks/useFirebase"
+import {
+  DocumentReference,
+  FirebaseUser,
+  useFirebase,
+} from "../hooks/useFirebase"
 import { ProviderProps } from "../types/context"
 import { User } from "../types/user"
 
@@ -17,6 +21,7 @@ export interface UserContextValues {
     callback?: Function,
   ) => void
   user: User | null
+  userRef: DocumentReference | null
 }
 
 export const UserContext = createContext<UserContextValues>({
@@ -27,6 +32,7 @@ export const UserContext = createContext<UserContextValues>({
   signOut: () => null,
   signUp: () => null,
   user: null,
+  userRef: null,
 })
 
 export const UserProvider = ({ children }: ProviderProps) => {
@@ -146,6 +152,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
         signOut,
         signUp,
         user,
+        userRef,
       }}
     >
       {children}
